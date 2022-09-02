@@ -1,0 +1,6 @@
+https://api.spoonacular.com/recipes/random
+
+npm install framer motion 
+react icons react-router-dom styled components
+
+npm i react-icons react-router-dom styled-components react-splide
