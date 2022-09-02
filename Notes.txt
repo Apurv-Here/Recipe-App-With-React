@@ -1,15 +1,8 @@
 https://api.spoonacular.com/recipes/random
 
-npm install framer motion 
-react icons react-router-dom styled components
-
-npm i react-icons react-router-dom styled-components react-splide
 
 
-
-
-
-Categories with NAvLink
+Categories with NavLink
 
 import { FaPizzaSlice, FaHamburger } from 'react-icons/fa';
 import { GiNoodles, GiChopsticks } from 'react-icons/gi';
@@ -47,3 +40,67 @@ const List = styled.div`
 `;
 
 export default Category
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------
+
+
+
+
+Food Recipe App
+
+Setup:
+This project setup is only react and with following npm install
+1. Node JS
+2. framer-motion
+3. react-icons
+4. styled-components
+5. react-router-dom 
+6. Google fonts
+
+
+API
+
+api link - https://api.spoonacular.com/recipes/random
+
+Site link - https://spoonacular.com/food-api
+
+Api usage
+1. fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`)
+2. fetch the above link to get random food dishes.
+3. fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`)
+4. The main data from api which will be mostly used will be recipe.image, recipe.title and recipe.id
+5. Put the api key in env for safety and restart the server whenver you change env.
+
+
+WORKING:
+
+1. We will call the api data and store it in local storage to do caching because our api calls are limited.
+2. To use a variable for api data we directly cannot define it in react so we have to apply useState.
+3. We will set the data by use state and then use the data because we cannot directly set the data.
+4. We will map the api data for looping and when we loop in react we have to give unique id to eact mapping to be error free.
+5. Create an async function to call the api 
+            const api = await fetch(`apiLinkWithKey`);
+            const data = await api.json();
+            localStorage.setItem('veggie', JSON.stringify(data.recipes));
+            setVeggie(data.recipes);
+6. If our local storage is empty then we will call the api and store data in local storage in string format by stringify method because only string data is allowed in local storage.
+7. If our local storage is not empty we will fetch the data from local storage only, without calling the api and convert the string data with JSON.parsed.
+8. Then we will map the useState variale we set in the start in the form of cards.
+
+
+
+
+DATE : 03-09-2022
+
