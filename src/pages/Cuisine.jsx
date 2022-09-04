@@ -10,9 +10,15 @@ function Cuisine() {
 
     const getCuisine = async (name) => {
 
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`);
+        let data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`);
 
-        const recipes = await data.json();
+
+        if(data.ok === false){
+            data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY2}&cuisine=${name}`);
+        }
+
+        let recipes = await data.json();
+
         // console.log("data is ");
         // console.log(recipes);
         setCuisine(recipes.results);
@@ -20,7 +26,7 @@ function Cuisine() {
 
     useEffect(() => {
         getCuisine(params.type);
-        console.log(params.type);
+        // console.log(params.type);
     }, [params.type]);
 
   return (
@@ -32,11 +38,11 @@ function Cuisine() {
     >
         {cuisine.map((item) => {
             return(
-                <Card item={item.id}>
-                    <link to={'/recipe/' + item.id}>
-                    <img src={item.image} alt="Image not found" />
+                <Card key={item.id}>
+                    <Link to={'/recipe/' + item.id}>
+                    <img src={item.image} alt="Image is loading" />
                     <h4>{item.title}</h4>
-                    </link>
+                    </Link>
                 </Card>
             )
         })}

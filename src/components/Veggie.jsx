@@ -22,8 +22,13 @@ function Veggie() {
             setVeggie(JSON.parse(check));
         }
         else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`);
-            const data = await api.json();
+            let api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`);
+
+            if(api.ok === false){
+                api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY2}&number=9&tags=vegetarian`);
+            }
+            
+            let data = await api.json();
 
             localStorage.setItem('veggie', JSON.stringify(data.recipes));
             setVeggie(data.recipes);

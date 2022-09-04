@@ -13,8 +13,14 @@ function Recipe() {
 
   const fetchDetails = async () => {
 
-    const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
-    const detailData = await data.json();
+    let data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
+
+    if(data.ok === false){
+      data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY2}`);
+    }
+
+    let detailData = await data.json();
+
     setDetails(detailData);
   }
 
@@ -27,7 +33,7 @@ function Recipe() {
     <DetailWrapper>
       <div>
         <HeadingStart>{details.title}</HeadingStart>
-        <img src={details.image} alt="Image not found" />
+        <img src={details.image} alt="Image is loading" />
       </div>
       </DetailWrapper>
       <ButtonInfo> 

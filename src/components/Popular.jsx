@@ -21,13 +21,21 @@ function Popular() {
             setPopular(JSON.parse(check));
         }
         else{
-            const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
-            const data = await api.json();
+            
+            let api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
+
+
+            if(api.ok === false){
+                api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY2}&number=9`);
+            }
+
+            let data = await api.json();
 
             localStorage.setItem('popular', JSON.stringify(data.recipes));
             setPopular(data.recipes);
             console.log(data.recipes);
         }
+
 
         
     }
@@ -39,7 +47,7 @@ function Popular() {
                 <Wrapper>
                     <h3>Popular Picks</h3>
                     <Splide options={{
-                        perPage: 3,
+                        perPage: 4,
                         arrows: true,
                         pagination: false,
                         drag: 'free',
@@ -52,7 +60,7 @@ function Popular() {
                                 <Card>
                                     <Link to={'/recipe/' + recipe.id}>
                                     <p>{recipe.title}</p>
-                                    <img src={recipe.image} alt="image not available" />
+                                    <img src={recipe.image} alt="Image is loading" />
                                     <Gradient />
                                     </Link> 
                                 </Card>

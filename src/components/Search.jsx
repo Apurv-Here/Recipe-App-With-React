@@ -36,10 +36,10 @@ const FormStyle = styled.form`
     input {
         border: none;
         background: linear-gradient(35deg, #494949, #313131);
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         color: white;
         padding: 1rem 3rem;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
         outline: none;
         width: 100%;
     }
@@ -49,9 +49,13 @@ const FormStyle = styled.form`
         display: flex;
     
         top: 50%;
-        left: 0%;
-        transform: translate(100%, -50%);
+        right: 0%;
+        transform: translate(-150%, -50%);
         color: white;
+
+        cursor: pointer;
+        
+        
     }
 `;
 

@@ -13,9 +13,16 @@ function Searched() {
 
   const getSearched = async (name) => {
 
-    const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`);
+    let data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`);
 
-    const recipes = await data.json();
+
+    if(data.ok === false){
+      data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY2}&query=${name}`);
+    }
+
+    let recipes = await data.json();
+
+
     // console.log("data is ");
     // console.log(recipes);
     setSearchedRecipes(recipes.results);
@@ -31,7 +38,7 @@ useEffect(() => {
         return(
           <Card key={item.id}>
             <Link to={'/recipe/' + item.id}>
-            <img src={item.image} alt="Image not found" />
+            <img src={item.image} alt="Image is loading" />
             <h4>{item.title}</h4>
             </Link>
           </Card>

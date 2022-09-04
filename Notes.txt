@@ -1,5 +1,14 @@
 https://api.spoonacular.com/recipes/random
 
+M       src/components/Popular.jsx
+M       src/components/Veggie.jsx
+M       src/pages/Cuisine.jsx
+M       src/pages/Recipe.jsx
+M       src/pages/Searched.jsx
+
+git checkout src/pages/Cuisine.jsx
+git checkout src/pages/Recipe.jsx
+git checkout src/pages/Searched.jsx
 
 
 Categories with NavLink
